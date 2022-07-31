@@ -1,0 +1,71 @@
+<!-- Copyright (c) 2022 8th Wall, Inc. -->
+<!-- body.html is optional; elements will be added to your html body after app.js is loaded. -->
+<a-scene 
+  swipe
+  shoot
+  physics="iterations: 1"
+  landing-page
+  xrextras-loading
+  xrextras-runtime-error
+  xrextras-gesture-detector
+  xrweb>
+  <a-assets>
+    <a-asset-item id="ballModel" src="assets/basketball.glb"></a-asset-item>
+    <a-asset-item id="hoopModel" src="assets/hoop2.glb"></a-asset-item>
+  </a-assets>
+  <a-entity 
+    light="
+      type: directional; 
+      castShadow: true; 
+      color: white;
+      intensity: 0.5" 
+    position="5 10 7">
+  </a-entity>
+  
+  <a-camera id="camera" position="0 2 2" raycaster="objects: .cantap" cursor="
+      fuse: false;
+      rayOrigin: mouse;">
+  </a-camera>
+  <a-sphere id="idle-ball" color="#334CCF" position="0 1 -2" scale="0.3 0.3 0.3" class= "cantap" xrextras-hold-drag="groundId: ground; riseHeight: 3"></a-sphere> 
+  <!--  
+  <a-torus
+    static-body="shape: hull"
+    color="#43A367" 
+    arc="360" radius="3" 
+    radius-tubular="0.1" 
+    rotation= "90 0 90" 
+    position= "0 3 -7"
+    animation= "property: position; dur: 10000; from: -5 3 -10; to: 5 3 -10; dir: alternate; loop: true; easing: linear"
+    >
+  </a-torus>
+  <a-box
+    id="backboard"
+    static-body
+    scale="9 6 0.5"
+    position="0 6 -8.75"
+    animation= "property: position; dur: 10000; from: -5 6 -13.5; to: 5 6 -13.5; dir: alternate; loop: true; easing: linear">
+  </a-box>
+ -->
+ <a-entity 
+   id="hoop"
+   static-body
+   shape="hull"
+   position="0 6 -10"
+   gltf-model="#hoopModel"
+   shadow= "recieve: true"
+   center= "0 6 -10"
+   scale= "13 13 13"
+   rotation="0 0 0"
+   animation="property: position; dur: 10000; from: -5 6 -10; to: 5 6 -10; dir: alternate; loop: true; easing: linear"
+ 
+
+ ></a-entity>
+  
+  <a-box
+    id="ground"
+    static-body="shape: box"
+    scale="1000 2 1000"
+    position="0 -1 0"
+    material="shader: shadow; transparent: true; opacity: 0.4"
+    shadow></a-box> 
+</a-scene>
